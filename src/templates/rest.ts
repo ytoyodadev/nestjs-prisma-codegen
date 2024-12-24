@@ -156,11 +156,14 @@ export const createEntityFileRest = (names: Names) => {
   const { capital } = names
 
   return `import { ${capital} } from '@prisma/client'
-import { IsDate, IsString, IsInt } from 'class-validator'
+import { ApiPropertyOptional } from '@nestjs/swagger';
+import { IsDate, IsString, IsInt, IsOptional } from 'class-validator'
 import { RestrictProperties } from 'src/common/dtos/common.input'
 
 export class ${capital}Entity implements RestrictProperties<${capital}Entity, ${capital}> {
-
+// Todo: Add below to make optional fields optional.
+// @IsOptional()  // NestJS validation for optional fields
+// @ApiPropertyOptional()  // Swagger UI documentation for optional fields
 }
 
 `
